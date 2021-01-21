@@ -1,0 +1,59 @@
+This is the first file in learning git.
+https://zhuanlan.zhihu.com/p/94008510
+#git配置
+git config --global user.name "Ross"
+git config --global user.email "1825798651@qq.com"
+git config --global color.ui true//为Git启用一些额外的颜色
+	//如果去掉--global参数，只对当前仓库有效
+#创建仓库 
+git init//初始化仓库
+git clone [url]//拷贝一个Git仓库到本地，让自己能够 查看该项目，或者进行修改。eg:git clone https://github.com/facebook/react.git
+git clone [url] rename//将仓库拷贝到本地并重命名
+
+#提交和修改--参见Gitcommand.jpg
+git add  //添加文件、文件夹到仓库(暂存区)
+git status  //查看项目当前状态，-s可查看简短的信息
+	?：状态为从未提交
+	A：状态为已提交
+	AM：状态为提交过，但最近有进行更改
+git diff	//比较文件在暂存区和工作区的差异
+	尚未缓存的改动：git diff
+	查看已缓存的改动：git diff --cashed
+	查看已缓存的与未缓存的所有改动：git diff HEAD
+	显示摘要而非整个diff:git diff --stat
+git commit  //提交暂存区到本地仓库  
+ 	-m [message] 用来提供一些备注信息。如果不使用该参数，系统会打开vim让你填写
+ 	-a 设置修改文件后不需要执行git add命令，直接用来提交
+git reset  //回退版本
+	[--soft|--mixed|--hard] [HEAD]
+		--mixed:默认，用于重置暂存区的文件与上一次提交（commit）保持一致，工作区文件内容保持不变
+			eg:
+			git reset HEAD^  //回退所有内容到上一个版本
+			git reset HEAD^ git.txt  //回退git.txt 文件版本道上一个版本
+			git reset 0523  //回退到指定的版本
+		--soft:回退到某个版本  
+			eg:git reset --soft HEAD~3  回退到上上上一个版本
+		--hard:撤销工作区中所有未提交的修改内容，将暂存区与工作区都回到上一次版本，并删除之前的所有信息提交（慎用）
+	[HEAD]
+		当前版本：HEAD	HEAD~0
+		上一个版本：HEAD^		HEAD~1
+		上上个版本：HEAD^^	HEAD~2
+		……
+	//执行 git reset HEAD 以取消之前 git add 添加，但不希望包含在下一提交快照中的缓存。	
+
+#git rm  //删除工作区文件
+	-f //强制删除工作区和暂存区文件
+
+#git mv  //移动或重命名一个文件 eg:git rm git.txt newfolder\git.txt
+	-f  //文件已存在、重名时强制执行
+
+#git log  //查看历史提交记录
+	--oneline  //简洁版
+	--graph  //查看历史中什么时候出现了分支、合并。
+	--reverse  //按照时间顺序排列
+	--author=[authour]	//查找指定用户提交日志
+	[--since|--before|--after|--until]	//指定日期查看所有提交 eg:git log --before={2.week.ago} --after{2021-01-21}
+#git blame <file>  	//以列表形式查看指定文件的历史修改记录
+
+#git remote  //远程仓库操作
+	
